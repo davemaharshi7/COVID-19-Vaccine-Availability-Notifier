@@ -22,7 +22,7 @@ def send_email_worker_function(email_content, receiver_email, flag):
         subject = "COVID-19 Vaccine Slots Available in your locality! Schedule Appointment ASAP🚀"
     message["Subject"] = subject
     message["From"] = conf.email
-    message["To"] = conf.password
+    message["To"] = receiver_email
 
     # contents
     availability_html_content =""
@@ -95,8 +95,8 @@ def send_email_worker_function(email_content, receiver_email, flag):
     # Create secure connection with server and send email
     context = ssl.create_default_context()
     with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-        server.login(sender_email, password)
+        server.login(conf.email, conf.password)
         server.sendmail(
-            sender_email, receiver_email, message.as_string()
+            conf.email, receiver_email, message.as_string()
         )
     logger.info("Email Sent successfully!")
