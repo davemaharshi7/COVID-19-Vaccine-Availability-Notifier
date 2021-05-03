@@ -2,6 +2,8 @@
 
 This project developed for tracking COVID-19 vaccine slots available in your pincode and district for 18+ age category. Once available, it will send email notifications to subscribers.
 
+Note: The purpose of this project is help humanity in this covid crisis, where people can get vaccination slots easily and save their time.
+
 ## Prerequisites
 
 - Python 3.6+
@@ -13,8 +15,8 @@ This project developed for tracking COVID-19 vaccine slots available in your pin
     `python -m pip install -r requirements.txt`  
     OR  
     `pip install -r requirements.txt`
-- Configure sender's Email credentials - Create `/app/config.json` file for configurations  
-Note: You may need to have [App passwords](https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor&visit_id=637554658548216477-2576856839&rd=1) or "Less secure app access" turned on. 
+- Configure sender's Email credentials - Create `/app/config.json` file for configurations.  
+**Note**: This email credentials will be used to send email notification to subscribers. You may need to have [App passwords](https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor&visit_id=637554658548216477-2576856839&rd=1) or "Less secure app access" turned on. 
 ```
 {
     "email": "username@domain.com",
@@ -48,6 +50,17 @@ This is the place you can manage subscribers list and much more...
 Example screenshot attached.
 ![Email Template](https://github.com/davemaharshi7/COVID-19-Vaccine-Availability-Notifier/blob/main/email_template.png?raw=true)
 
+## Subscribe notification for district
+
+- Make sure API server is running.
+- One can subscribe to district via `/api/subscribe/district` and enter your email-address and district_id as:
+```
+{
+  "email": "username@gmail.com",
+  "district_id": "154"
+}
+```
+- You can find your `district_id` by referring [link](https://github.com/davemaharshi7/COVID-19-Vaccine-Availability-Notifier/wiki/How-to-find-your-district_id%3F)
 
 ## Features
 
