@@ -1,6 +1,10 @@
 # COVID-19 Vaccine Availability Notifier 🚀
 
-This project developed for tracking COVID-19 vaccine slots available in your pincode and district for 18+ age category. Once available, it will send email notifications to subscribers.
+🆕 Changes: Updated Co-WIN portal API as per the [Co-WIN API reference](https://apisetu.gov.in/public/marketplace/api/cowin/cowin-public-v2). If you are already using codebase, please fetch the latest changes. 
+
+## Overview
+
+This project developed for tracking COVID-19 vaccine slots available in your pincode and district for 18+ age category. Once available, it will send email notifications at periodic interval to subscribers until slots are available.
 
 Note: The purpose of this project is help humanity in this covid crisis, where people can get vaccination slots easily and save their time.
 
@@ -61,6 +65,10 @@ Example screenshot attached.
 }
 ```
 - You can find your `district_id` by referring [link](https://github.com/davemaharshi7/COVID-19-Vaccine-Availability-Notifier/wiki/How-to-find-your-district_id%3F)
+
+## Unsubscribe to Email Notification
+
+- One can unsubscribe via POST: `/api/unsubscribe/reset` endpoint, resulting in removal of all subscribers.
 
 ## Features
 
