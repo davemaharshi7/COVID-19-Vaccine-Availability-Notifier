@@ -25,9 +25,9 @@ from datetime import date
 
 logger = Logger()
 URL_DISTRICT = (
-    "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict"
+    "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict"
 )
-URL_PINCODE = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByPin"
+URL_PINCODE = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin"
 
 # App declaration
 app = FastAPI(title=API_TITLE, version=API_VERSION, docs_url=API_PREFIX + API_DOCS_URL)
