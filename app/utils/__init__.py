@@ -14,5 +14,6 @@ from .constants import (
     POLL_INTERVAL,
     DUMMY_EMAIL,
     DUMMY_PASSWORD,
+    HEADERS,
 )
 from .send_email import send_email
