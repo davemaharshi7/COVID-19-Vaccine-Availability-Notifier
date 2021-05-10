@@ -9,6 +9,7 @@ from utils import (
     send_email,
     MIN_AGE_LIMIT,
     POLL_INTERVAL,
+    HEADERS,
 )
 from routers import (
     subscribe,
@@ -27,7 +28,9 @@ logger = Logger()
 URL_DISTRICT = (
     "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict"
 )
-URL_PINCODE = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin"
+URL_PINCODE = (
+    "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin"
+)
 
 # App declaration
 app = FastAPI(title=API_TITLE, version=API_VERSION, docs_url=API_PREFIX + API_DOCS_URL)
@@ -71,16 +74,20 @@ def check_vaccine_availability():
     current_date = today.strftime("%d-%m-%Y")
     for ids in get_districts():
         param = dict(district_id=ids, date=current_date)
-        resp = requests.get(url=URL_DISTRICT, params=param)
+        resp = requests.get(url=URL_DISTRICT, headers=HEADERS, params=param)
         logger.info("API call to get vaccine slots by district id - {}".format(ids))
-        data = resp.json()
-        _parse_json_response_to_check_vaccine_availablity(data, ids, True)
+        logger.debug("Status Code: " + str(resp.status_code))
+        if resp.status_code == 200:
+            data = resp.json()
+            _parse_json_response_to_check_vaccine_availablity(data, ids, True)
     for ids in get_pincode():
         param = dict(pincode=ids, date=current_date)
-        resp = requests.get(url=URL_PINCODE, params=param)
+        resp = requests.get(url=URL_PINCODE, headers=HEADERS, params=param)
         logger.info("API call to get vaccine slots by pincode - {}".format(ids))
-        data = resp.json()
-        _parse_json_response_to_check_vaccine_availablity(data, ids, False)
+        logger.debug("Status Code: " + str(resp.status_code))
+        if resp.status_code == 200:
+            data = resp.json()
+            _parse_json_response_to_check_vaccine_availablity(data, ids, False)
 
 
 @app.on_event("shutdown")
